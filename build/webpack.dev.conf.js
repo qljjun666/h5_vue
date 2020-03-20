@@ -44,6 +44,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../index.html'),//模板文件的路径
+            favicon: path.resolve(__dirname, '../favicon.ico')//配置网页图标
         }),
         /*
             热更新的两种方式
@@ -101,7 +102,7 @@ module.exports = {
                     // 禁用babel自动对每个文件的runtime注入，而是引入@@babel/plugin-transform-runtime并且使所有辅助代码从这里引用。
                     plugins: ['@babel/plugin-transform-runtime'],
                     cacheDirectory: true // 使用缓存
-                  }
+                  } 
                 }
             },
             {

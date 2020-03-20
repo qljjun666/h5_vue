@@ -53,6 +53,7 @@ module.exports = {
                 removeComments: true, // 移除注释
                 collapseBooleanAttributes: true // 省略只有 boolean 值的属性值 例如：readonly checked
             },
+            favicon: path.resolve(__dirname, '../favicon.ico')//配置网页图标
         }),
         new VueLoaderPlugin(),
         new webpack.HashedModuleIdsPlugin(),// 实现持久化缓存
@@ -103,13 +104,11 @@ module.exports = {
                 include: path.resolve(__dirname, '../src'),
                 use: {
                   loader: 'babel-loader',
-                  options: {
-                    presets: ['@babel/preset-env'],
+                  presets: ['@babel/preset-env'],
                     // babel在每个文件都插入了辅助代码，使代码体积过大，babel对一些公共方法使用了非常小的辅助代码，比如_extend。默认情况下会被添加到每一个需要它的文件中，可以引入babel runtime作为一个独立模块，来避免重复引入，把@babel/runtime安装为一个依赖
                     // 禁用babel自动对每个文件的runtime注入，而是引入@@babel/plugin-transform-runtime并且使所有辅助代码从这里引用。
                     plugins: ['@babel/plugin-transform-runtime'],
                     cacheDirectory: true // 使用缓存
-                  }
                 }
             },
             {

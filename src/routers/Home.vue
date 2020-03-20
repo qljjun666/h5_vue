@@ -3,6 +3,7 @@
     <header-bar />
     <div class="content">
       这是首页
+      <div class="box" />
     </div>
   </div>
 </template>
@@ -35,6 +36,12 @@ div{
     .content {
         padding-top: 45px;
     }
+}
+.box {
+    width: 100px;
+    height: 100px;
+    color: red;
+    transform: rotate(45deg);
 }
 
 </style>
