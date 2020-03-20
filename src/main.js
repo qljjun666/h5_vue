@@ -4,6 +4,7 @@ import Vue from "vue";
 import App from "../src/App.vue";
 import router from "../src/router/index";
 // import "../src/assets/style/reset.css";
+import "lib-flexible";
 
 // compile模式
 // new Vue({

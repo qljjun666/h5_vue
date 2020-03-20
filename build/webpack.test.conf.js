@@ -7,7 +7,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserJSPlugin = require("terser-webpack-plugin"); //压缩JS
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');// 打包静态资源
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin; // 查看个文件的依赖关系
 
 module.exports = {
     mode: 'production', // 自动压缩JS
@@ -18,6 +17,8 @@ module.exports = {
         filename: 'js/[name].[chunkhash].js',
         chunkFilename: 'js/[name].[chunkhash].js'
     },
+    // 开发工具 
+    devtool: 'cheap-module-source-map',
     optimization: {
         minimizer: [
           new TerserJSPlugin({}),// 压缩JS
@@ -68,14 +69,6 @@ module.exports = {
             from:path.resolve(__dirname, '../README.md'),// 打包的静态资源目录地址
             to:'./README' // 打包到dist下面的static
         }]),
-        new BundleAnalyzerPlugin({
-            analyzerMode: 'static',
-            //  是否在默认浏览器中自动打开报告
-            openAnalyzer: false,
-            //  将在“服务器”模式下使用的端口启动HTTP服务器。
-            analyzerPort: 9528, 
-            reportFilename: 'static/report.html',
-        })
     ],
     // 模版解析配置项
     resolve: {
@@ -97,8 +90,7 @@ module.exports = {
                 options: {
                     fix: true,
                     formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
-                },
-                include: [path.resolve(__dirname, '../src')], // 指定检查的目录
+                }
             },
             {
                 test: /\.vue$/,
@@ -111,8 +103,7 @@ module.exports = {
                 options: {// 这里的配置项参数将会被传递到 eslint 的 CLIEngine 
                     fix: true,
                     formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
-                },
-                include: [path.resolve(__dirname, '../src')], // 指定检查的目录
+                }
             },
             {
                 test: /\.m?js$/,

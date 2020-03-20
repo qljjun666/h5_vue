@@ -2,7 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const chalk  = require('chalk'); // 输出日志颜色
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin'); //编译vue
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');//整理控制台信息
+const notifier = require('node-notifier');
 
 module.exports = {
     mode: 'development',
@@ -52,7 +54,8 @@ module.exports = {
             2.DevServer添加参数hot:true，plugins添加插件ew webpack.HotModuleReplacementPlugin()
         */
         new webpack.HotModuleReplacementPlugin(),
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new FriendlyErrorsPlugin()
     ],
     // 模版解析配置项
     resolve: {
@@ -74,7 +77,8 @@ module.exports = {
                 options: {
                     fix: true,
                     formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
-                }
+                },
+                include: [path.resolve(__dirname, '../src')], // 指定检查的目录
             },
             {
                 test: /\.vue$/,
@@ -87,7 +91,8 @@ module.exports = {
                 options: {// 这里的配置项参数将会被传递到 eslint 的 CLIEngine 
                     fix: true,
                     formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
-                }
+                },
+                include: [path.resolve(__dirname, '../src')], // 指定检查的目录
             },
             {
                 test: /\.m?js$/,
@@ -120,17 +125,6 @@ module.exports = {
                             limit: 10*1024, // 小于10*1024字节的图片打包成base 64图片
                             name:'images/[name].[hash:8].[ext]',
                             publicPath:''
-                        }
-                    }
-                ]
-            },
-            {// 处理HTML中的图片
-                test:/\.html$/,
-                use:[
-                    {
-                        loader:"html-loader",
-                        options:{
-                            attrs:["img:src","img:data-src"] 
                         }
                     }
                 ]

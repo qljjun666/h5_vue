@@ -9,7 +9,7 @@ module.exports = {
       unitPrecision: 6, // 转换成rem单位的小数点后的保留位数
       selectorBalckList: ['van'], // 匹配不被转换为rem的选择器
       replace: true, // 替换包含rem的规则，而不是添加回退
-      mediaQuery: false // 允许在媒体查询中转换px
+      mediaQuery: false, // 允许在媒体查询中转换px
       },
   }
 }

@@ -38,10 +38,12 @@ div{
     }
 }
 .box {
+    margin: 20px;
     width: 100px;
     height: 100px;
-    color: red;
+    background-color: red;
     transform: rotate(45deg);
+    border: 1Px solid green;
 }
 
 </style>
