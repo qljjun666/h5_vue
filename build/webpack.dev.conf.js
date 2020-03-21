@@ -1,10 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
-const chalk  = require('chalk'); // 输出日志颜色
 const VueLoaderPlugin = require('vue-loader/lib/plugin'); //编译vue
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');//整理控制台信息
-const notifier = require('node-notifier');
+
 
 module.exports = {
     mode: 'development',
@@ -60,9 +59,9 @@ module.exports = {
     // 模版解析配置项
     resolve: {
         // 设置可省略文件后缀名
-        extensions: [' ','.js','vue','.json','.jsx'],
+        extensions: [' ','.vue','.js','.json','.jsx'],
         // 查找 module 的话从这里开始查找;
-        modules: [path.resolve(__dirname, "../src"), path.resolve(__dirname, "../node_modules")], // 绝对路径;
+        modules: [path.resolve(__dirname, "../src"), path.resolve(__dirname, "../node_modules")], // 绝对路径;直接指定第三方模块的路径，提高优化速度
         // 配置路径映射（别名）
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
@@ -82,7 +81,8 @@ module.exports = {
             },
             {
                 test: /\.vue$/,
-                use: 'vue-loader'
+                use: 'vue-loader',
+                include: path.resolve(__dirname, '../src')
             },
             {
                 enforce: "pre",
@@ -100,21 +100,22 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 include: path.resolve(__dirname, '../src'),
                 use: {
+                // babel在每个文件都插入了辅助代码，使代码体积过大，babel对一些公共方法使用了非常小的辅助代码，比如_extend。默认情况下会被添加到每一个需要它的文件中，可以引入babel runtime作为一个独立模块，来避免重复引入，把@babel/runtime安装为一个依赖
+                // 禁用babel自动对每个文件的runtime注入，而是引入@@babel/plugin-transform-runtime并且使所有辅助代码从这里引用。
                   loader: 'babel-loader',
                   options: {
                     presets: ['@babel/preset-env'],
-                    // babel在每个文件都插入了辅助代码，使代码体积过大，babel对一些公共方法使用了非常小的辅助代码，比如_extend。默认情况下会被添加到每一个需要它的文件中，可以引入babel runtime作为一个独立模块，来避免重复引入，把@babel/runtime安装为一个依赖
-                    // 禁用babel自动对每个文件的runtime注入，而是引入@@babel/plugin-transform-runtime并且使所有辅助代码从这里引用。
                     plugins: ['@babel/plugin-transform-runtime'],
-                    cacheDirectory: true // 使用缓存
-                  } 
+                    cacheDirectory: true
+                  }
                 }
             },
             {
                 test: /\.(less|css)$/,
                 use: [
                     'style-loader', 'css-loader', 'postcss-loader', 'less-loader'
-                ]
+                ],
+                include: path.resolve(__dirname, '../src')
             },
             {
                 test: /\.(png|jp?g|gif|svg)$/,
@@ -127,7 +128,8 @@ module.exports = {
                             publicPath:''
                         }
                     }
-                ]
+                ],
+                include: path.resolve(__dirname, '../src')
             },
             {
                 // 文件依赖配置项——字体图标
@@ -140,31 +142,34 @@ module.exports = {
                         publicPath:''
                     },
                 }],
+                include: path.resolve(__dirname, '../src')
             }, 
-            {
-                // 文件依赖配置项——音频
-                test: /\.(wav|mp3|ogg)?$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        limit: 8192, 
-                        name: 'audios/[name].[ext]?[hash:8]',
-                        publicPath:''
-                    },
-                }],
-            }, 
-            {
-                // 文件依赖配置项——视频
-                test: /\.(ogg|mpeg4|webm)?$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        limit: 8192, 
-                        name: 'videos/[name].[ext]?[hash:8]',
-                        publicPath:''
-                    },
-                }],
-            },
+            // {
+            //     // 文件依赖配置项——音频
+            //     test: /\.(wav|mp3|ogg)?$/,
+            //     use: [{
+            //         loader: 'file-loader',
+            //         options: {
+            //             limit: 8192, 
+            //             name: 'audios/[name].[ext]?[hash:8]',
+            //             publicPath:''
+            //         },
+            //         include: path.resolve(__dirname, '../src')
+            //     }],
+            // }, 
+            // {
+            //     // 文件依赖配置项——视频
+            //     test: /\.(ogg|mpeg4|webm)?$/,
+            //     use: [{
+            //         loader: 'file-loader',
+            //         options: {
+            //             limit: 8192, 
+            //             name: 'videos/[name].[ext]?[hash:8]',
+            //             publicPath:''
+            //         },
+            //     }],
+            //     include: path.resolve(__dirname, '../src')
+            // },
         ]
     }
 };

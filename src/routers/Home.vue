@@ -20,7 +20,7 @@ export default {
         };
     },
     created() {
-        console.log(1111);
+        console.log(4444);
     },
     methods: {
 

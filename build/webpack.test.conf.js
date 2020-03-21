@@ -94,7 +94,8 @@ module.exports = {
             },
             {
                 test: /\.vue$/,
-                use: 'vue-loader'
+                use: 'vue-loader',
+                include: [path.resolve(__dirname, '../src')]
             },
             {
                 enforce: "pre",
@@ -111,21 +112,21 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 include: path.resolve(__dirname, '../src'),
                 use: {
-                  loader: 'babel-loader',
-                  options: {
-                    presets: ['@babel/preset-env'],
                     // babel在每个文件都插入了辅助代码，使代码体积过大，babel对一些公共方法使用了非常小的辅助代码，比如_extend。默认情况下会被添加到每一个需要它的文件中，可以引入babel runtime作为一个独立模块，来避免重复引入，把@babel/runtime安装为一个依赖
                     // 禁用babel自动对每个文件的runtime注入，而是引入@@babel/plugin-transform-runtime并且使所有辅助代码从这里引用。
-                    plugins: ['@babel/plugin-transform-runtime'],
-                    cacheDirectory: true // 使用缓存
-                  } 
-                }
+                      loader: 'babel-loader?cacheDirectory=true',
+                      options: {
+                        presets: ['@babel/preset-env'],
+                        plugins: ['@babel/plugin-transform-runtime']
+                      }
+                    }
             },
             {
                 test: /\.(less|css)$/,
                 use: [
                     MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'less-loader'
-                ]
+                ],
+                include: [path.resolve(__dirname, '../src')]
             },
             {
                 test: /\.(png|jp?g|gif|svg)$/,
@@ -138,7 +139,8 @@ module.exports = {
                             publicPath:''
                         }
                     }
-                ]
+                ],
+                include: [path.resolve(__dirname, '../src')]
             },
             {
                 // 文件依赖配置项——字体图标
@@ -151,30 +153,7 @@ module.exports = {
                         publicPath:''
                     },
                 }],
-            }, 
-            {
-                // 文件依赖配置项——音频
-                test: /\.(wav|mp3|ogg)?$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        limit: 8192, 
-                        name: 'audios/[name].[ext]?[hash:8]',
-                        publicPath:''
-                    },
-                }],
-            }, 
-            {
-                // 文件依赖配置项——视频
-                test: /\.(ogg|mpeg4|webm)?$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        limit: 8192, 
-                        name: 'videos/[name].[ext]?[hash:8]',
-                        publicPath:''
-                    },
-                }],
+                include: [path.resolve(__dirname, '../src')]
             },
         ]
     }
