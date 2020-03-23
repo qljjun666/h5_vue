@@ -25,12 +25,15 @@ module.exports = {
         // 配置路径映射（别名）
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
+            'src': path.resolve(__dirname, '../src'),
+            'components': path.resolve(__dirname, '../src/components'),
+            'store': path.resolve(__dirname, '../src/store'),
         }
     },
     module: {
         rules: [
             {
-                test: /\.vue$/,
+                test: /\.(vue|js)$/,
                 enforce: 'pre',
                 use: {
                     loader: 'eslint-loader',
@@ -45,16 +48,6 @@ module.exports = {
                 test: /\.vue$/,
                 use: 'vue-loader',
                 include: path.resolve(__dirname, '../src')
-            },
-            {
-                enforce: "pre",
-                test: /\.js$/,
-                loader: "eslint-loader",
-                options: {// 这里的配置项参数将会被传递到 eslint 的 CLIEngine 
-                    fix: true,
-                    formatter: require('eslint-friendly-formatter') // 指定错误报告的格式规范
-                },
-                include: [path.resolve(__dirname, '../src')], // 指定检查的目录
             },
             {
                 test: /\.m?js$/,

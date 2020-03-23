@@ -21,7 +21,7 @@ module.exports = merge(baseWebpackConfig, {
         // port: 8080,//8080 is default
         // proxy: {//proxy backend api
         //     '/api': 'http://localhost:3000'
-        // }
+        // },
     },
     // 开发工具
     devtool: 'cheap-module-eval-source-map',

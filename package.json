@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack --config build/webpack.dev.conf.js",
-    "start": "webpack-dev-server --config build/webpack.dev.conf.js --color",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config build/webpack.dev.conf.js --color",
     "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.conf.js",
     "test": "cross-env NODE_ENV=production webpack --config build/webpack.test.conf.js"
   },
@@ -58,6 +57,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.8.7",
+    "axios": "^0.19.2",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
     "vuex": "^3.1.3"

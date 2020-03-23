@@ -9,6 +9,8 @@
 </template>
 <script>
 import HeaderBar from '../components/header/index.vue';
+import { test } from '../service/index';
+
 export default {
     name: 'Home',
     components: {
@@ -20,7 +22,7 @@ export default {
         };
     },
     created() {
-        console.log(4444);
+        console.log(test());
     },
     methods: {
 
