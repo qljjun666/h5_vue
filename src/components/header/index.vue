@@ -20,15 +20,15 @@
 </template>
 <script>
 export default {
-    name: "HeaderBar",
+    name: 'HeaderBar',
     props: {
         title: {
             type: String,
-            default: "标题"
+            default: '标题'
         },
         rightTitle: {
             type: String,
-            default: ""
+            default: ''
         },
         closeWindow: {
             type: Boolean,
@@ -55,11 +55,11 @@ export default {
             if (!this.turn) {
                 this.$router.go(-1);
             } else {
-                this.$emit("goToPre");
+                this.$emit('goToPre');
             }
         },
         rightFn() {
-            this.$emit("rightFn");
+            this.$emit('rightFn');
         }
     }
 };

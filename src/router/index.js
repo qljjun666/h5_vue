@@ -1,19 +1,19 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
-const Home = resolve => require(["../routers/Home.vue"], resolve);
+const Home = resolve => require(['../routers/Home.vue'], resolve);
 const router = new VueRouter({
     routes: [
         {
-            path: "/",
-            direct: "/home",
+            path: '/',
+            direct: '/home',
             component: Home
         },
         {
-            path: "/home",
-            direct: "/home",
+            path: '/home',
+            direct: '/home',
             component: Home
         }
     ]

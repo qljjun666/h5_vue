@@ -8,9 +8,9 @@
   </div>
 </template>
 <script>
-import HeaderBar from "../components/header/index.vue";
+import HeaderBar from '../components/header/index.vue';
 export default {
-    name: "Home",
+    name: 'Home',
     components: {
         HeaderBar
     },
