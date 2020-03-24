@@ -22,7 +22,7 @@ export default {
         };
     },
     created() {
-        console.log(test());
+        console.log(test({ age: '18' }));
     },
     methods: {
 
