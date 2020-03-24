@@ -15,7 +15,7 @@ import api from './api';
 const test = (data) => {
     return request({
         url: api.test,
-        method: 'POST',
+        method: 'get',
         data: { BODY: data }
     });
 };

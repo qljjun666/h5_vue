@@ -7,7 +7,6 @@ export default {
     },
     mutations: {
         [LOADING](state, boolean) {
-            console.log(1111);
             state.loading = boolean;
         }
     },

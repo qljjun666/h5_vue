@@ -22,10 +22,18 @@ export default {
         };
     },
     created() {
-        console.log(test({ age: '18' }));
+        // this.getData();
     },
     methods: {
-
+        getData() {
+            test().then(({ status, data }) => {
+                if (status === 200) {
+                    console.log(data);
+                }
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
     }
 };
 </script>

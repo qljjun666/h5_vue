@@ -5,7 +5,7 @@ const NODE_ENV = process.env.NODE_ENV;
 
 const request = axios.create({
     // 基础的请求地址
-    baseURL: NODE_ENV === 'development' ? '/api' : 'http://0.0.0.0', // 后面的时线上的地址，可以改为自己的线上接口地址
+    baseURL: NODE_ENV === 'development' ? 'http://127.0.0.1:3000/' : 'http://0.0.0.0', // 后面的时线上的地址，可以改为自己的线上接口地址
     timeout: 20000 // 请求超时
 });
 
