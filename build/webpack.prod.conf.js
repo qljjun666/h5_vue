@@ -13,6 +13,8 @@ module.exports = merge(baseWebpackConfig, {
     output: {
         filename: 'js/[name].[chunkhash].js',
     },
+    // 开发工具
+    // devtool: 'cheap-module-source-map',
     optimization: {
         minimizer: [
           new TerserJSPlugin({}),// 压缩JS
