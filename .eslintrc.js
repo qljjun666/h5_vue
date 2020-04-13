@@ -30,6 +30,5 @@ module.exports = {
       "no-console": ["error",{allow:["log","warn"]}],// 允许使用console.log()
       "arrow-parens": 0,
       "no-new":0,//允许使用 new 关键字
-      "vue/name-property-casing": ["error", "PascalCase" | "kebab-case"]
     },
 }

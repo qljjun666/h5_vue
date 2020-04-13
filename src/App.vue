@@ -9,10 +9,7 @@
 <script>
 
 export default {
-  name: 'App',
-  created() {
-    console.log(this.$store.state.common.cachedRouteNames);
-  }
+  name: 'App'
 };
 
 </script>

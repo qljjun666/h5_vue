@@ -1,10 +1,15 @@
 <template>
   <div class="home">
-    <header-bar />
+    <header-bar title="首页" />
     <div class="content">
       <ul>
-        <li>申请人查询</li>
-        <li>受益人查询</li>
+        <li
+          v-for="(item, index) in list"
+          :key="index"
+          @click="goToList(item)"
+        >
+          {{ item }}
+        </li>
       </ul>
     </div>
   </div>
@@ -20,7 +25,7 @@ export default {
   },
   data() {
     return {
-
+      list: ['申请人查询', '受益人查询']
     };
   },
   created() {
@@ -36,19 +41,27 @@ export default {
       }).catch((err) => {
         console.log(err);
       });
+    },
+    goToList(val) {
+      this.$router.push({
+        path: 'list',
+        query: {
+          type: val
+        }
+      });
     }
   }
 };
 </script>
 <style scoped lang="less">
 div{
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 .home {
-    .content {
-        padding-top: 45px;
-    }
+  .content {
+    padding-top: 45px;
+  }
 }
 
 </style>

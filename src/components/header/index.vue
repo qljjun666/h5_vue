@@ -54,6 +54,7 @@ export default {
     goBack() {
       if (!this.turn) {
         this.$router.go(-1);
+        this.$emit('goToPre');
       } else {
         this.$emit('goToPre');
       }
@@ -66,7 +67,6 @@ export default {
 </script>
 <style scoped>
 .header-bar {
-    position: relative;
     position: fixed;
     width: 100%;
     height: 45px;
@@ -85,10 +85,13 @@ export default {
 }
 .header-bar_left i {
     display: block;
-    height: 45px;
-    width: 45px;
+    height: 30px;
+    width: 30px;
     background: url('../../assets/image/fanhui.png') no-repeat center;
     background-size: contain;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .header-bar_title {
     height: 45px;
