@@ -27,6 +27,7 @@ export default {
   },
   created() {
     this.msg = this.$route.query.type || '';
+    console.log('初始化');
   },
   methods: {
     goToDetail(val) {

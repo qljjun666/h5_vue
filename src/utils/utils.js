@@ -1,5 +1,5 @@
 import store from '../store/index';
-import Vue from 'vue';
+// import Vue from 'vue';
 
 const { cachedRouteNames } = store.state.common;
 
@@ -40,17 +40,17 @@ const setRouterBeforeEach = (router) => {
 
   // 全局混入。在该组件被解析之后，若是属于需要缓存的组件，先将其添加到缓存配置中，进行缓存
   // 导航守卫的最后一个步骤就是调用beforeRouteEnter守卫中传给next的回调函数，此时整个组件已经被解析，DOM也已经更新
-  Vue.mixin({
-    beforeRouteEnter(to, from, next) {
-      next(() => {
-        to.matched.forEach((item) => {
-          if (to.meta.keepAlive) {
-            addRoutes(item);
-          }
-        });
-      });
-    }
-  });
+  // Vue.mixin({
+  //   beforeRouteEnter(to, from, next) {
+  //     next(() => {
+  //       to.matched.forEach((item) => {
+  //         if (to.meta.keepAlive) {
+  //           addRoutes(item);
+  //         }
+  //       });
+  //     });
+  //   }
+  // });
 };
 
 export default {

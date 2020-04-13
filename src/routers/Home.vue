@@ -25,7 +25,10 @@ export default {
   },
   data() {
     return {
-      list: ['申请人查询', '受益人查询']
+      list: [
+        '列表1',
+        '列表2'
+      ]
     };
   },
   created() {
