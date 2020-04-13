@@ -13,13 +13,13 @@ import api from './api';
 //     return http(api.test);
 // };
 const test = (data) => {
-    return request({
-        url: api.test,
-        method: 'get',
-        data: { BODY: data }
-    });
+  return request({
+    url: api.test,
+    method: 'get',
+    data: { BODY: data }
+  });
 };
 
 export {
-    test
+  test
 };

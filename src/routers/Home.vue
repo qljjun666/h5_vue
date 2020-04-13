@@ -2,8 +2,10 @@
   <div class="home">
     <header-bar />
     <div class="content">
-      这是首页
-      <div class="box" />
+      <ul>
+        <li>申请人查询</li>
+        <li>受益人查询</li>
+      </ul>
     </div>
   </div>
 </template>
@@ -12,29 +14,30 @@ import HeaderBar from '../components/header/index.vue';
 import { test } from '../service/index';
 
 export default {
-    name: 'Home',
-    components: {
-        HeaderBar
-    },
-    data() {
-        return {
+  name: 'Home',
+  components: {
+    HeaderBar
+  },
+  data() {
+    return {
 
-        };
-    },
-    created() {
-        // this.getData();
-    },
-    methods: {
-        getData() {
-            test().then(({ status, data }) => {
-                if (status === 200) {
-                    console.log(data);
-                }
-            }).catch((err) => {
-                console.log(err);
-            });
+    };
+  },
+  created() {
+    // this.getData();
+    // console.log(111111);
+  },
+  methods: {
+    getData() {
+      test().then(({ status, data }) => {
+        if (status === 200) {
+          console.log(data);
         }
+      }).catch((err) => {
+        console.log(err);
+      });
     }
+  }
 };
 </script>
 <style scoped lang="less">
@@ -46,14 +49,6 @@ div{
     .content {
         padding-top: 45px;
     }
-}
-.box {
-    margin: 20px;
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    transform: rotate(45deg);
-    border: 1Px solid green;
 }
 
 </style>

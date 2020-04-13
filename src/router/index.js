@@ -5,17 +5,15 @@ Vue.use(VueRouter);
 
 const Home = resolve => require(['../routers/Home.vue'], resolve);
 const router = new VueRouter({
-    routes: [
-        {
-            path: '/',
-            direct: '/home',
-            component: Home
-        },
-        {
-            path: '/home',
-            direct: '/home',
-            component: Home
-        }
-    ]
+  routes: [
+    {
+      name: 'Home',
+      path: '/home',
+      component: Home,
+      meta: {
+        keepAlive: true
+      }
+    }
+  ]
 });
 export default router;

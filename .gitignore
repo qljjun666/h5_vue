@@ -5,3 +5,4 @@ node_modules/
 dist/
 npm-debug.*
 selenium-debug.log
+mock/

@@ -1,4 +1,4 @@
 export default {
-    // 测试
-    test: '/home'
+  // 测试
+  test: '/home'
 };

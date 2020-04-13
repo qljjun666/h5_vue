@@ -20,48 +20,48 @@
 </template>
 <script>
 export default {
-    name: 'HeaderBar',
-    props: {
-        title: {
-            type: String,
-            default: '标题'
-        },
-        rightTitle: {
-            type: String,
-            default: ''
-        },
-        closeWindow: {
-            type: Boolean,
-            default: false
-        },
-        showLine: {
-            type: Boolean,
-            default: false
-        },
-        isEmit: {
-            type: Boolean,
-            default: false
-        },
-        turn: {
-            type: Boolean,
-            default: false
-        }
+  name: 'HeaderBar',
+  props: {
+    title: {
+      type: String,
+      default: '标题'
     },
-    data() {
-        return {};
+    rightTitle: {
+      type: String,
+      default: ''
     },
-    methods: {
-        goBack() {
-            if (!this.turn) {
-                this.$router.go(-1);
-            } else {
-                this.$emit('goToPre');
-            }
-        },
-        rightFn() {
-            this.$emit('rightFn');
-        }
+    closeWindow: {
+      type: Boolean,
+      default: false
+    },
+    showLine: {
+      type: Boolean,
+      default: false
+    },
+    isEmit: {
+      type: Boolean,
+      default: false
+    },
+    turn: {
+      type: Boolean,
+      default: false
     }
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    goBack() {
+      if (!this.turn) {
+        this.$router.go(-1);
+      } else {
+        this.$emit('goToPre');
+      }
+    },
+    rightFn() {
+      this.$emit('rightFn');
+    }
+  }
 };
 </script>
 <style scoped>
