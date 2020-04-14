@@ -2,7 +2,7 @@
   <div>
     <header-bar title="详情" />
     <div class="content">
-      {{ msg }}
+      我是数据{{ msg }}详情
     </div>
   </div>
 </template>
@@ -28,5 +28,6 @@ export default {
 <style>
 .content {
   padding-top: 45px;
+  font-size: 20px;
 }
 </style>

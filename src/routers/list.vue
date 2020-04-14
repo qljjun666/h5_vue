@@ -1,14 +1,22 @@
 <template>
   <div>
-    <header-bar
-      title="列表"
-      @goToPre="goToPre"
-    />
+    <header-bar title="列表" />
     <div class="content">
-      <p @click="goToDetail(msg)">
-        {{ msg }}
+      <p
+        v-for="(item, index) in list"
+        :key="index"
+        class="item"
+        @click="goToDetail(item)"
+      >
+        {{ msg }} -- 数据{{ item }}
       </p>
     </div>
+    <button
+      class="btn"
+      @click="addData"
+    >
+      获取数据
+    </button>
   </div>
 </template>
 
@@ -22,7 +30,8 @@ export default {
   },
   data() {
     return {
-      msg: ''
+      msg: '',
+      list: [1, 2, 3, 4, 5]
     };
   },
   created() {
@@ -38,11 +47,8 @@ export default {
         }
       });
     },
-    goToPre() {
-      this.$store.commit('common/update_cachedroutenames', {
-        action: 'delete',
-        route: this.$options.name
-      });
+    addData() {
+      this.list.push(this.list.length + 1);
     }
   }
 };
@@ -51,5 +57,19 @@ export default {
 <style>
 .content {
   padding-top: 45px;
+}
+.item {
+  height: 50px;
+  font-size: 20px;
+}
+.btn {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  border: none;
+  outline: none;
+  background-color: orange;
+  width: 100px;
+  height: 45px;
 }
 </style>

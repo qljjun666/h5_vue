@@ -11,10 +11,7 @@ const router = new VueRouter({
     {
       name: 'Home',
       path: '/home',
-      component: Home,
-      meta: {
-        keepAlive: true
-      }
+      component: Home
     },
     {
       name: 'List',

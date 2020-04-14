@@ -1,6 +1,9 @@
 <template>
   <div class="home">
-    <header-bar title="首页" />
+    <header-bar
+      title="首页"
+      :show-line="true"
+    />
     <div class="content">
       <ul>
         <li
@@ -26,14 +29,18 @@ export default {
   data() {
     return {
       list: [
-        '列表1',
-        '列表2'
+        '查询1',
+        '查询2'
       ]
     };
   },
   created() {
     // this.getData();
     // console.log(111111);
+    this.$store.commit('common/update_cachedroutenames', {
+      action: 'delete',
+      route: 'List'
+    });
   },
   methods: {
     getData() {
@@ -65,6 +72,10 @@ div{
   .content {
     padding-top: 45px;
   }
+}
+li {
+  height: 40px;
+  font-size: 20px;
 }
 
 </style>
